@@ -8,7 +8,7 @@ from .models import(Albums, Artists, AuthGroup, AuthUser, DjangoContentType,
                     AuthPermission, AuthGroupPermissions, AuthUserUserPermissions,
                     AuthUserGroups, DjangoMigrations, DjangoSession, Genres,
                     InvoiceItems, Invoices, Customers, DjangoAdminLog, Employees,
-                    MediaTypes, PlaylistTrack, Playlists, Tracks)
+                    MediaTypes, Playlists, Tracks)
 admin.site.register(Albums)
 admin.site.register(Artists)
 admin.site.register(AuthGroup)
@@ -27,6 +27,6 @@ admin.site.register(Customers)
 admin.site.register(DjangoAdminLog)
 admin.site.register(Employees)
 admin.site.register(MediaTypes)
-admin.site.register(PlaylistTrack)
+# admin.site.register(PlaylistTrack)
 admin.site.register(Playlists)
 admin.site.register(Tracks)
