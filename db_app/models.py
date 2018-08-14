@@ -96,7 +96,8 @@ class AuthPermission(models.Model):
 
 class AuthGroupPermissions(models.Model):
     # id = models.IntegerField(primary_key=True)  # AutoField?
-    group = models.ForeignKey(AuthGroup, models.DO_NOTHING, db_column='group_id')
+    group = models.ForeignKey(AuthGroup, models.DO_NOTHING,
+                              db_column='group_id', related_name="with_authgroup")
     permission = models.ForeignKey('AuthPermission', models.DO_NOTHING, db_column='permission_id')
 
     class Meta:
@@ -107,7 +108,8 @@ class AuthGroupPermissions(models.Model):
 
 class AuthUserGroups(models.Model):
     # id = models.IntegerField(primary_key=True)  # AutoField?
-    user = models.ForeignKey(AuthUser, models.DO_NOTHING, db_column='user_id')
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING,
+                             db_column='user_id', related_name="with_user")
     group = models.ForeignKey(AuthGroup, models.DO_NOTHING, db_column='group_id')
 
     class Meta:
@@ -119,7 +121,8 @@ class AuthUserGroups(models.Model):
 class AuthUserUserPermissions(models.Model):
     # id = models.IntegerField(primary_key=True)  # AutoField?
     user = models.ForeignKey(AuthUser, models.DO_NOTHING, db_column='user_id')
-    permission = models.ForeignKey(AuthPermission, models.DO_NOTHING, db_column='permission_id')
+    permission = models.ForeignKey(AuthPermission, models.DO_NOTHING,
+                                   db_column='permission_id', related_name="with_permission")
 
     class Meta:
         managed = False
@@ -140,7 +143,8 @@ class DjangoAdminLog(models.Model):
     object_id = models.TextField(blank=True, null=True)
     object_repr = models.CharField(max_length=200)
     change_message = models.TextField()
-    content_type = models.ForeignKey('DjangoContentType', models.DO_NOTHING, blank=True, null=True)
+    content_type = models.ForeignKey(
+        'DjangoContentType', models.DO_NOTHING, blank=True, null=True, related_name="With_content")
     user = models.ForeignKey(AuthUser, models.DO_NOTHING)
     action_flag = models.PositiveSmallIntegerField()
 
@@ -250,18 +254,17 @@ class Customers(models.Model):
 
 class Genres(models.Model):
     # Field name made lowercase.
-    genreid = models.IntegerField(db_column='GenreId', primary_key=True)
+    id = models.IntegerField(db_column='GenreId', primary_key=True)
     # Field name made lowercase. This field type is a guess.
     name = models.TextField(db_column='Name', blank=True, null=True)
+
+    def __str__(self):
+
+        return self.name
 
     class Meta:
         managed = False
         db_table = 'genres'
-
-#
-
-
-#
 
 
 class Invoices(models.Model):
@@ -324,10 +327,11 @@ class Tracks(models.Model):
     albumid = models.ForeignKey(Albums, on_delete=models.CASCADE,
                                 db_column='AlbumId', blank=True, null=True)
     # Field name made lowercase.
-    mediatypeid = models.ForeignKey(MediaTypes, models.DO_NOTHING, db_column='MediaTypeId')
+    mediatypeid = models.ForeignKey(MediaTypes, models.DO_NOTHING,
+                                    db_column='MediaTypeId', related_name="with_media")
     # Field name made lowercase.
     genreid = models.ForeignKey(Genres, models.DO_NOTHING,
-                                db_column='GenreId', blank=True, null=True)
+                                db_column='GenreId', blank=True, null=True, related_name="with_genre")
     # Field name made lowercase. This field type is a guess.
     composer = models.TextField(db_column='Composer', blank=True, null=True)
     milliseconds = models.IntegerField(db_column='Milliseconds')  # Field name made lowercase.
@@ -350,7 +354,8 @@ class InvoiceItems(models.Model):
     # Field name made lowercase.
     invoiceid = models.ForeignKey(Invoices, models.DO_NOTHING, db_column='InvoiceId')
     # Field name made lowercase.
-    trackid = models.ForeignKey(Tracks, models.DO_NOTHING, db_column='TrackId')
+    trackid = models.ForeignKey(Tracks, models.DO_NOTHING,
+                                db_column='TrackId', related_name="with_track")
     # Field name made lowercase. This field type is a guess.
     unitprice = models.TextField(db_column='UnitPrice')
     quantity = models.IntegerField(db_column='Quantity')  # Field name made lowercase.

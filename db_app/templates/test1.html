@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Test 1 </title>
+
+    <style media="screen">
+      #sub_container{
+        width: 100wv;
+        border: 1px solid black;
+        min-height: 300px;
+        padding: 50px;
+        max-height: auto
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Test 1 page</h1>
+
+    <h3>query result</h3>
+
+    <div id="sub_container">
+      <ol>
+      {% for object in object_list %}
+        <li>{{ object }}</li>
+      {% endfor %}
+    </ol>
+    </div>
+  </body>
+</html>
