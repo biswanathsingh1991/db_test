@@ -20,10 +20,17 @@
     <h3>query result</h3>
 
     <div id="sub_container">
-      <ol>
-      {% for object in object_list %}
-        <li>{{ object }}</li>
-      {% endfor %}
+
+      {{media_count}}<br>
+      {{ media_type }}<br>
+<ol>
+
+  {% for object in composer %}
+    <li>
+      {{ object }} -- {{ object.composer }}
+    </li>
+    {% endfor %}
+  </ol>
     </ol>
     </div>
   </body>

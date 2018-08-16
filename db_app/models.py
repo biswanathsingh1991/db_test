@@ -15,7 +15,7 @@ class Artists(models.Model):
     name = models.TextField(db_column='Name', blank=True, null=True)
 
     def __str__(self):
-        return self.name
+        return "Artists -- {}".format(self.name)
 
     class Meta:
         managed = False
@@ -31,7 +31,7 @@ class Albums(models.Model):
     # artistid = models.IntegerField(db_column='ArtistId')  # Field name made lowercase.
 
     def __str__(self):
-        return self.title
+        return "Albums -- {}".format(self.title)
 
     class Meta:
         managed = False
@@ -43,7 +43,7 @@ class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=80)
 
     def __str__(self):
-        return self.name
+        return "AuthGroup -- {}".format(self.name)
 
     class Meta:
         managed = False
@@ -64,7 +64,7 @@ class AuthUser(models.Model):
     last_name = models.CharField(max_length=150)
 
     def __str__(self):
-        return self.username
+        return "AuthUser -- {}".format(self.username)
 
     class Meta:
         managed = False
@@ -87,6 +87,9 @@ class AuthPermission(models.Model):
     content_type = models.ForeignKey('DjangoContentType', models.DO_NOTHING)
     codename = models.CharField(max_length=100)
     name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return "AuthPermission -- {}".format(self.name)
 
     class Meta:
         managed = False
@@ -208,7 +211,7 @@ class Employees(models.Model):
     email = models.TextField(db_column='Email', blank=True, null=True)
 
     def __str__(self):
-        return self.firstname
+        return "Employees -- {}".format(self.firstname)
 
     class Meta:
         managed = False
@@ -245,7 +248,7 @@ class Customers(models.Model):
                                      db_column='SupportRepId', blank=True, null=True)
 
     def __str__(self):
-        return self.firstname+" "+self.lastname
+        return "Customers -- {} {}".format(self.firstname, self.lastname)
 
     class Meta:
         managed = False
@@ -260,7 +263,7 @@ class Genres(models.Model):
 
     def __str__(self):
 
-        return self.name
+        return "Genres -- {}".format(self.name)
 
     class Meta:
         managed = False
@@ -287,7 +290,8 @@ class Invoices(models.Model):
     total = models.TextField(db_column='Total')
 
     def __str__(self):
-        return str(self.id)
+        id = str(self.id)
+        return "Invoices -- {}".format(id)
 
     class Meta:
         managed = False
@@ -341,7 +345,7 @@ class Tracks(models.Model):
     unitprice = models.TextField(db_column='UnitPrice')
 
     def __str__(self):
-        return self.name
+        return "Track -- {}".format(self.name)
 
     class Meta:
         managed = False
@@ -361,7 +365,8 @@ class InvoiceItems(models.Model):
     quantity = models.IntegerField(db_column='Quantity')  # Field name made lowercase.
 
     def __str__(self):
-        return str(self.id)
+        id = str(self.id)
+        return "InvoiceItems -- {}".format(id)
 
     class Meta:
         managed = False
@@ -378,7 +383,7 @@ class Playlists(models.Model):
     track = models.ManyToManyField(Tracks)
 
     def __str__(self):
-        return self.name
+        return "Playlists -- {}".format(self.name)
 
     class Meta:
         managed = False
