@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, TemplateView
 # Create your views here.
 from .models import(Albums, Artists, AuthGroup, AuthUser, DjangoContentType,
                     AuthPermission, AuthGroupPermissions, AuthUserUserPermissions,
@@ -12,9 +12,6 @@ class Test1(ListView):
     template_name = 'test1.html'
     queryset = Albums.objects.all()
 
-    # def queryset(self):
-    #     pass
-
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data()
         # genres = Genres.objects.all()
@@ -25,6 +22,9 @@ class Test1(ListView):
         context['media_type'] = media_type
         composer = Tracks.objects.only('composer')
         context['composer'] = composer
-
         context.update(kwargs)
         return context
+
+
+class Allalbum(TemplateView):
+    template_name = 'allalbum.html'
