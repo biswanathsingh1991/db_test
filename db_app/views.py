@@ -6,6 +6,8 @@ from .models import(Albums, Artists, AuthGroup, AuthUser, DjangoContentType,
                     AuthUserGroups, DjangoMigrations, DjangoSession, Genres,
                     InvoiceItems, Invoices, Customers, DjangoAdminLog, Employees,
                     MediaTypes, Playlists, Tracks)
+from rest_framework.generics import ListAPIView
+from . serializer import SerializersAllalbum
 
 
 class Test1(ListView):
@@ -28,3 +30,9 @@ class Test1(ListView):
 
 class Allalbum(TemplateView):
     template_name = 'allalbum.html'
+
+
+class AllAlbumApi(ListAPIView):
+    template_name = 'allalbum.html'
+    queryset = Albums.objects.all()
+    serializer_class = SerializersAllalbum
