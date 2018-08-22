@@ -1,46 +1,93 @@
 <!DOCTYPE html>{% load static %}
 <html lang="en" dir="ltr">
-
 <head>
   <meta charset="utf-8">
-  <title></title>
+  <title>LISTVIEW</title>
 </head>
-
 <body>
-  <h1>All album page</h1>
-  <div id="allalbum">
-    <div class="" v-if='info'>
-
+  <div class="row container-fluid">     <!-- main container!-->
+  <div id="allalbum" class= "col-4">    <!-- allalbum vue instance -->
+    <div  v-if='info' >
+      <h1>All album page</h1>
       <div class="" v-for="item in info.data">
         <test12 v-bind:info='item'></test12>
       </div>
     </div>
   </div>
 
-
-  <script type="text/x-template" id="test12-template">
-    <div>
-
-      {% verbatim %}
-      <ul>
-        <li>{{info.title}}
-        </li>
-      </ul>
-      {% endverbatim %}
+  <div id="allartist" class= "col-3">
+    <div class="" v-if='artist_info'>     <!-- allartist vue instance -->
+      <h1>All artiest page</h1>
+      <div class="" v-for="item in artist_info.data">
+        <artist v-bind:artist_info='item'></artist>
+      </div>
     </div>
+  </div>
+  <div id="alltracks" class= "col-5">
+    <div class="" v-if='tracks_info'>     <!-- allartist vue instance -->
+      <h1>All tracks page</h1>
+      <div class="" v-for="item in tracks_info.data">
+        <tracks v-bind:tracks_info='item'></tracks>
+      </div>
+    </div>
+  </div>
+</div>
 
+<!--################################################################-->
+<!--################################################################-->
+<!--################################################################-->
+<!-- vue component template -->
+<!--################################################################-->
+<!--################################################################-->
+  <script type="text/x-template" id="test12-template">
+    <div>{% verbatim %}
+      <table class="table table-striped table-dark">  <!-- album component -->
+          <tbody>
+            <td>{{info.title}}</td>
+          </tbody>
+      </table>{% endverbatim %}
+    </div>
   </script>
+<!-- ################################################################-->
+  <script type="text/x-template" id="artist-template">
+    <div>{% verbatim %}
+      <table class="table table-striped table-dark">  <!-- artist component-->
+          <tbody>
+            <td>{{artist_info.name}}</td>
+          </tbody>
+      </table>{% endverbatim %}
+    </div>
+  </script>
+<!-- ###########################################-->
+  <script type="text/x-template" id="tracks-template">
+    <div>{% verbatim %}
+      <table class="table table-striped table-dark">  <!-- artist component-->
+          <tbody>
+            <td>{{tracks_info.name}}</td>
+          </tbody>
+      </table>{% endverbatim %}
+    </div>
+  </script>
+<!-- ###########################################-->
 
 
 
 
+
+
+
+<!-- ##################################################################### -->
+<!-- ##################################################################### -->
   <!-- cdn -->
+  <!-- ##################################################################### -->
+  <!-- ##################################################################### -->
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
   <script type="text/javascript" src="{% static 'js/allalbum.js' %}"></script>
-  <!-- cdn -->
-
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<!--###################################################################### -->
 
 </body>
 
