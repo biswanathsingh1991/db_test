@@ -1,22 +1,47 @@
 <!DOCTYPE html>{% load static %}
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <h1>All album page</h1>
 
-    <div id="allalbum">
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
 
-[[ info.data ]]
+<body>
+  <h1>All album page</h1>
+  <div id="allalbum">
+    <div class="" v-if='info'>
 
-
-
+      <div class="" v-for="item in info.data">
+        <test12 v-bind:info='item'></test12>
+      </div>
     </div>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
-    <script type="text/javascript" src="{% static 'js/allalbum.js' %}"></script>
-  </body>
+  </div>
+
+
+  <script type="text/x-template" id="test12-template">
+    <div>
+
+      {% verbatim %}
+      <ul>
+        <li>{{info.title}}
+        </li>
+      </ul>
+      {% endverbatim %}
+    </div>
+
+  </script>
+
+
+
+
+  <!-- cdn -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+  <script type="text/javascript" src="{% static 'js/allalbum.js' %}"></script>
+  <!-- cdn -->
+
+
+</body>
+
 </html>

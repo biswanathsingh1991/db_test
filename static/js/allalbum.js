@@ -1,13 +1,13 @@
 
 Vue.component('test12', {
-  props: ['title'],
+  props: ['info'],
   data: function () {
     return {
-      
+
 
     }
   },
-    template: '<div> <ul><li v-for="title in title">{{ title.title }}<li></ul></div>'
+    template: '#test12-template'
 });
 
 
@@ -20,7 +20,7 @@ var allalbum = new Vue({
     info: null,
     joy : "name-joy"
   },
-    mounted (){
+    created (){
       // $.ajax({
       //   url : '/allalbumapi/',
       //   dataType : 'json',
