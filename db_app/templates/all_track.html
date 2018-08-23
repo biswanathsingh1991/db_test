@@ -1,0 +1,52 @@
+{% extends 'base_1.html' %}{% load static %}
+{% block title %}<title>Tracks</title> {% endblock %}
+{% block body %}
+<div class="" id="tracks">
+  <div class="" v-if = "tracks_info">
+
+  <tracks v-bind:tracks_info= "tracks_info"></tracks>
+
+<!-- [[ tracks_info ]] -->
+</div>
+</div>
+
+{% endblock %}
+
+<!-- ################################################## -->
+{% block script %}
+<!-- ##################### -->
+<!-- vue component template  -->
+<script type="text/x-template" id="tracks-template">
+    <div >
+  <table class="table table-striped">
+    <thead>{% verbatim %}
+      <tr >
+        <th scope="col" v-for="(key, value) in tracks_info.data[0]">{{ value }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="item in tracks_info.data ">
+        <td v-for="(key, value) in item ">
+          {{ key }}</td>{% endverbatim %}
+      </tr>
+    </tbody>
+  </table>
+
+  <div v-if="tracks_info" >
+  {% verbatim %}
+    <div v-for="(key, value) in tracks_info.data[0]">
+      <!-- <div v-for= "(key, value) in item"> -->
+  {{value}}  ---{{ key }}
+  <br>
+
+  {% endverbatim %}
+</div><hr>
+<!-- </div> -->
+</div>
+</div>
+
+</script>
+
+<!-- ############################################### -->
+<script type="text/javascript" src="{% static 'js/tracks.js' %}"></script>
+{% endblock %}
